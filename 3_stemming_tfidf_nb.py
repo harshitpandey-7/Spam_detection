@@ -33,7 +33,7 @@ for i in range(len(messages)):
     corpus.append(review)
 
 # TF-IDF
-tfidf = TfidfVectorizer(max_features=2500)
+tfidf = TfidfVectorizer(max_features=5000)
 X = tfidf.fit_transform(corpus).toarray()
 
 y = pd.get_dummies(messages['label'])

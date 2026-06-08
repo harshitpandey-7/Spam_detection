@@ -86,9 +86,9 @@ for pipe in pipelines:
     corpus = corpus_stemmed if pipe['preprocess'] == 'stemming' else corpus_lemmatized
 
     if pipe['vectorizer'] == 'bow':
-        vec = CountVectorizer(max_features=2500)
+        vec = CountVectorizer(max_features=5000)
     else:
-        vec = TfidfVectorizer(max_features=2500)
+        vec = TfidfVectorizer(max_features=5000)
 
     X = vec.fit_transform(corpus).toarray()
 
