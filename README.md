@@ -18,20 +18,40 @@ The dataset contains 5,572 SMS messages labeled as `ham` (legitimate) or `spam`.
 | 6 | `6_lemmatization_tfidf_svm.py` | WordNet Lemmatization | TF-IDF | SVM (Linear) |
 | 7 | `7_lemmatization_tfidf_rf.py` | WordNet Lemmatization | TF-IDF | Random Forest |
 
-## Comparison
+## Results
 
-Run the comparison script to evaluate all models side by side:
+| Model | Accuracy | Precision | Recall | F1-Score |
+|-------|----------|-----------|--------|----------|
+| 1. Stemming + BoW + NB | 0.9865 | 0.9503 | 0.9563 | **0.9533** |
+| 2. Lemma + BoW + NB | 0.9839 | 0.9494 | 0.9375 | 0.9434 |
+| 3. Stemming + TF-IDF + NB | 0.9794 | **1.0000** | 0.8563 | 0.9226 |
+| 4. Lemma + TF-IDF + NB | 0.9794 | 0.9928 | 0.8625 | 0.9231 |
+| 5. Lemma + TF-IDF + LR | 0.9686 | 0.9845 | 0.7938 | 0.8789 |
+| 6. Lemma + TF-IDF + SVM | 0.9857 | 0.9932 | 0.9063 | 0.9478 |
+| 7. Lemma + TF-IDF + RF | 0.9848 | **1.0000** | 0.8938 | 0.9439 |
 
-```bash
-python compare_all_models.py
-```
+**Best overall model (F1-Score): Stemming + BoW + Multinomial Naive Bayes (0.9533)**
 
-This generates:
-- `comparison_results.csv` - metrics table
-- `comparison_bar_chart.png` - grouped bar chart
-- `comparison_confusion_matrices.png` - confusion matrices for all models
-- `comparison_radar_chart.png` - radar chart for top 5 models
-- `comparison_f1_ranking.png` - F1-score ranking
+### Comparison Charts
+
+#### All Models Comparison
+![Bar Chart](comparison_bar_chart.png)
+
+#### F1-Score Ranking
+![F1 Ranking](comparison_f1_ranking.png)
+
+#### Confusion Matrices
+![Confusion Matrices](comparison_confusion_matrices.png)
+
+#### Top 5 Models Radar Chart
+![Radar Chart](comparison_radar_chart.png)
+
+## Key Findings
+
+- **Stemming vs Lemmatization**: Stemming slightly outperforms lemmatization with BoW + NB (F1: 0.9533 vs 0.9434). With TF-IDF + NB they are nearly equal.
+- **BoW vs TF-IDF**: Bag of Words outperforms TF-IDF when paired with Naive Bayes (F1: 0.9434 vs 0.9231). BoW preserves raw word counts that NB works well with.
+- **Best Classifier with TF-IDF**: SVM performs best among classifiers when using TF-IDF features (F1: 0.9478), followed by Random Forest (0.9439).
+- **Logistic Regression** underperforms compared to other classifiers on this dataset, especially in recall (0.7938).
 
 ## How to Run
 
