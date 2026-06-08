@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Pickle result files
+*.pkl
+
+# Generated comparison outputs
+comparison_results.csv
+comparison_bar_chart.png
+comparison_confusion_matrices.png
+comparison_radar_chart.png
+comparison_f1_ranking.png
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
